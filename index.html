@@ -11,28 +11,45 @@
 
 <body ng-controller="mainController">
 
-    <h1>Camera Shop</h1>
+    <div class="shop">
 
-    <select ng-model="sort">
+        <h1>Camera Shop</h1>
+
+        <select ng-model="sort">
       <option value="rating">Rating</option>
       <option value="price">Price</option>
     </select>
 
-    <div ng-repeat="camera in cameraArray | orderBy: sort">
-        <div class="title">
-            {{camera.title}}
+        <div ng-repeat="camera in cameraArray | orderBy: sort">
+            <div class="title">
+                <h2>{{camera.title}}</h2>
+            </div>
+            <div>
+                <img class="camImg" src="{{camera.image}}" alt="{{camera.title}}">
+                <input type="button" ng-click="addToCart(camera)" value="Add to cart">
+            </div>
+            <div>
+                <p ng-class="{sale: camera.onSale == true}" ng-show="camera.onSale == true">Price: {{camera.price | currency}} ON SALE!!</p>
+                <p ng-show="camera.onSale == false">Price: {{camera.price | currency}}</p>
+            </div>
+            <div>
+                <p>Rating: {{camera.rating}}</p>
+            </div>
+            <br>
         </div>
+    </div>
+
+    <div class="cart">
+        <h1>Shopping Cart</h1>
         <div>
-            <img class="camImg" src="{{camera.image}}" alt="{{camera.title}}">
+            <ul>
+                <li ng-repeat="item in currentItems track by $index">
+                    {{item.title}} | {{item.price | currency}}
+                </li>
+            </ul>
+<h2>Total Cost</h2>
+<h4>{{totalCost | currency}}</h4>
         </div>
-        <div>
-            <p ng-class="{sale: camera.onSale == true}" ng-show="camera.onSale == true">Price: {{camera.price | currency}} ON SALE!!</p>
-            <p ng-show="camera.onSale == false">Price: {{camera.price | currency}}</p>
-        </div>
-        <div>
-            <p>Rating: {{camera.rating}}</p>
-        </div>
-        <br>
     </div>
 
 </body>

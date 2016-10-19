@@ -22,6 +22,26 @@ app.controller('mainController', ['$scope', function($scope) {
         onSale: true
     }]
 
+    $scope.totalCost = 0
+    $scope.currentItems = []
+
+
+    $scope.addToCart = function(camera) {
+        // console.log('i was clicked');
+        // console.log('$scope.cameraArray', camera);
+        $scope.currentItems.push(camera)
+        updatePrice()
+    }
+
+    function updatePrice() {
+        var sum = 0
+        for (var i = 0; i < $scope.currentItems.length; i++) {
+            sum += $scope.currentItems[i].price
+        }
+
+        $scope.totalCost = sum
+
+    }
 
 
 

@@ -3,10 +3,15 @@
 }
 
 .camImg {
-  height: 100px;
+  height: 150px;
+  width: auto;;
 }
 
 .sale {
   color: gold;
   /*font-weight: bold;*/
+}
+
+li {
+  list-style-type: none;
 }
